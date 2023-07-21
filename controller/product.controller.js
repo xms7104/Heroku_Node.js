@@ -2,15 +2,15 @@ const pool = require("../database/index")
 const productController = {
     getAll: async (req, res) => {
         try {
-            const [rows, fields] = await pool.query("select * from product")
+            const [rows, fields] = await pool.query("select * from product");
             res.json({
                 data: rows
-            })
+            });
         } catch (error) {
-            console.log(error)
+            console.log("Error in getAll method:", error);
             res.json({
                 status: "error"
-            })
+            });
         }
     },
     getById: async (req, res) => {
