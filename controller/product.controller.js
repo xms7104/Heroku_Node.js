@@ -21,11 +21,10 @@ pool.getConnection((err, conn) => {
 const productController = {
     
     getAll: async (req, res) => {
-        const data = await pool.query("select id, name, price from product");
         try {
-            const parsedData = JSON.parse(JSON.stringify(data));
+            const data = await pool.query("select id, name, price from product");
             res.json({
-                data:data,
+                data:JSON.stringify(data),
             });
         } catch (error) {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
