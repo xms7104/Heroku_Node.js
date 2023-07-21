@@ -5,9 +5,6 @@ const pool = mysql.createPool({
     user: 'ue7pr1zr4teaxfmh', 
     password: 'tNslVf39rXYSFwX7EF0u',
     database: 'bapp1ylp6e4pepz9rc6u',
-    // waitForConnections: true,
-    // connectionLimit: 10,
-    // queueLimit: 0
 });
 
 pool.getConnection((err, conn) => {
@@ -57,7 +54,7 @@ const productController = {
     update: async (req, res) => {
         const { title, price } = req.body
         const { id } = req.params
-        await pool.query( "UPDATE product SET title = ?, price = ? where id = ?", [title, price,id],
+        await pool.query( "UPDATE product SET title = ?, price = ? where id = ?", [title, price, id],
         (err, result) => {
             if (err) {
             console.log(err);
