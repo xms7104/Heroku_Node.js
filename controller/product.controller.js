@@ -22,8 +22,9 @@ const productController = {
     getAll: async (req, res) => {
         try {
             const data = await pool.query("select * from product");
+            const processedData = processData(data); // 编写一个函数来处理数据，去除循环引用
             res.json({
-                data: data
+                data: processedData
             });
         } catch (error) {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
