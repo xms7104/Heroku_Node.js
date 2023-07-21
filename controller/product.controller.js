@@ -2,7 +2,7 @@ const pool = require("../database/index")
 const productController = {
     getAll: async (req, res) => {
         try {
-            const [rows, fields] = await pool.query("select * from posts")
+            const [rows, fields] = await pool.query("select * from product")
             res.json({
                 data: rows
             })
@@ -16,7 +16,7 @@ const productController = {
     getById: async (req, res) => {
         try {
             const { id } = req.params
-            const [rows, fields] = await pool.query("select * from posts where id = ?", [id])
+            const [rows, fields] = await pool.query("select * from product where id = ?", [id])
             res.json({
                 data: rows
             })
@@ -30,7 +30,7 @@ const productController = {
     create: async (req, res) => {
         try {
             const { title, price } = req.body
-            const sql = "insert into posts (title, price) values (?, ?)"
+            const sql = "insert into product (title, price) values (?, ?)"
             const [rows, fields] = await pool.query(sql, [title, price])
             res.json({
                 data: rows
@@ -46,7 +46,7 @@ const productController = {
         try {
             const { title, price } = req.body
             const { id } = req.params
-            const sql = "update posts set title = ?, price = ? where id = ?"
+            const sql = "update product set title = ?, price = ? where id = ?"
             const [rows, fields] = await pool.query(sql, [title, price, id])
             res.json({
                 data: rows
@@ -61,7 +61,7 @@ const productController = {
     delete: async (req, res) => {
         try {
             const { id } = req.params
-            const [rows, fields] = await pool.query("delete from posts where id = ?", [id])
+            const [rows, fields] = await pool.query("delete from product where id = ?", [id])
             res.json({
                 data: rows
             })
