@@ -23,10 +23,8 @@ const productController = {
     getAll: async (req, res) => {
         try {
             const rows = await pool.query("select * from product");
-            console.log(rows)
-            const extractedData = rows[0];
             res.json({
-              dataRows: extractedData,
+              dataRows: rows,
             });
         } catch (error) {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
