@@ -19,12 +19,12 @@ pool.getConnection((err, conn) => {
 });
 
 const productController = {
+    
     getAll: async (req, res) => {
         try {
-            const data = await pool.query("select * from product");
-            const processedData = processData(data); // 编写一个函数来处理数据，去除循环引用
+            const data = await pool.query("select id, name, price from product");
             res.json({
-                data: processedData
+                data: data
             });
         } catch (error) {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
