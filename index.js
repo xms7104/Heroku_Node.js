@@ -1,17 +1,30 @@
-// Importing express module
 const express = require('express');
 const app = express();
 
+const mysql = require("mysql");
+const cors = require("cors");
+app.use(cors());
+app.use(express.json()); 
+
+const db = mysql.createConnection({
+  host: "bapp1ylp6e4pepz9rc6u-mysql.services.clever-cloud.com",
+  user: "ue7pr1zr4teaxfmh",
+  password: "tNslVf39rXYSFwX7EF0u",
+  database: "bapp1ylp6e4pepz9rc6u",
+});
 
 // Getting Request
-app.get('/', (req, res) => {
+app.get("/", (req, res, next) => {
+  db.query("SELECT * FROM product", (err, result) => {
+    if (err) {
+      console.error("錯誤發生：", err);
+      return next(err); // 將錯誤交給下一個中介軟體處理
+    } else {
+      res.send(result);
+    }
+  });
+});
 
-    // Sending the response
-    res.send('Hello World!')
-
-    // Ending the response
-    res.end()
-})
 
 // Establishing the port
 const PORT = process.env.PORT ||5000;
