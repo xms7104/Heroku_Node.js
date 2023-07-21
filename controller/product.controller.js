@@ -22,7 +22,7 @@ const productController = {
     
     getAll: async (req, res) => {
         try {
-            const [rows, fields] = await pool.query("select * from product");
+            const rows = await pool.query("select * from product");
             console.log(rows)
             const extractedData = rows[0];
             const extractedData1 = data;
