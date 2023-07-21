@@ -43,49 +43,41 @@ const productController = {
         )
     },
     create: async (req, res) => {
-        try {
-            const { title, price } = req.body
-            const sql = "insert into product (title, price) values (?, ?)"
-            const [rows, fields] = await pool.query(sql, [title, price])
-            res.json({
-                data: rows
-            })
-        } catch (error) {
-            console.log(error)
-            res.json({
-                status: "error"
-            })
+        const { title, price } = req.body
+        await pool.query( "INSERT INTO product (title, price) values (?, ?)", [title, price],
+        (err, result) => {
+            if (err) {
+            console.log(err);
+            } else {
+            res.send(result);
+            }
         }
+        )
     },
     update: async (req, res) => {
-        try {
-            const { title, price } = req.body
-            const { id } = req.params
-            const sql = "update product set title = ?, price = ? where id = ?"
-            const [rows, fields] = await pool.query(sql, [title, price, id])
-            res.json({
-                data: rows
-            })
-        } catch (error) {
-            console.log(error)
-            res.json({
-                status: "error"
-            })
+        const { title, price } = req.body
+        const { id } = req.params
+        await pool.query( "UPDATE product SET title = ?, price = ? where id = ?", [title, price,id],
+        (err, result) => {
+            if (err) {
+            console.log(err);
+            } else {
+            res.send(result);
+            }
         }
+        )
     }, 
     delete: async (req, res) => {
-        try {
-            const { id } = req.params
-            const [rows, fields] = await pool.query("delete from product where id = ?", [id])
-            res.json({
-                data: rows
-            })
-        } catch (error) {
-            console.log(error)
-            res.json({
-                status: "error"
-            })
+        const { id } = req.params
+        await pool.query( "DELETE from product where id = ?", [id],
+        (err, result) => {
+            if (err) {
+            console.log(err);
+            } else {
+            res.send(result);
+            }
         }
+        )
     }
 
 }
