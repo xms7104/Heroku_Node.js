@@ -18,7 +18,6 @@ app.get("/", (req, res, next) => {
   db.query("SELECT * FROM product", (err, result) => {
     if (err) {
       console.error("錯誤發生：", err);
-      return next(err); // 將錯誤交給下一個中介軟體處理
     } else {
       res.send(result);
     }
