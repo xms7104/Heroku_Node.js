@@ -30,7 +30,7 @@ const productController = {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
             res.json({
                 status: "error_getAll",
-                error: error.message // 将错误信息添加到响应中
+                error: error // 将错误信息添加到响应中
             });
         }
     },
