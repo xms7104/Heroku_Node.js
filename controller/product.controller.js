@@ -28,7 +28,7 @@ const productController = {
         } catch (error) {
             console.log("Error in getAll method:", error);
             res.json({
-                status: "error"
+                status: "error_getAll",
             });
         }
     },
