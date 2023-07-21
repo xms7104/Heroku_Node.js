@@ -19,17 +19,16 @@ pool.getConnection((err, conn) => {
 });
 
 const productController = {
-    getAll: async (req, res) => {
-        pool.query(
-            "SELECT * FROM product",
-            (err, result) => {
-              if (err) {
-                console.log(err);
-              } else {
-                res.send(result);
-              }
+    getAll: async (req, res) => { await pool.query(
+        "SELECT * FROM product",
+        (err, result) => {
+            if (err) {
+            console.log(err);
+            } else {
+            res.send(result);
             }
-          );
+        }
+        );
         // try {
         //     const rows = await pool.query("select * from product");
         //     res.json({
