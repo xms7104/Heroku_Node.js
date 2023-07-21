@@ -24,8 +24,8 @@ const productController = {
         try {
             const data = await pool.query("select * from product");
             console.log(data)
-            const extractedData = data.rows;
-            const extractedData1 = data.data;
+            const extractedData = data[0];
+            const extractedData1 = data;
             res.json({
               dataRows: extractedData,
               data: extractedData1,
