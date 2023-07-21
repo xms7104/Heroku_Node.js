@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 const pool = mysql.createPool({
-    host: 'bapp1ylp6e4pepz9rc6u-mysql.services.clever-cloud.com', 
-    user: 'ue7pr1zr4teaxfmh', 
-    password: 'tNslVf39rXYSFwX7EF0u',
-    database: 'bapp1ylp6e4pepz9rc6u',
+    host: process.env.DB_HOST, 
+    user: process.env.DB_USERNAME, 
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DBNAME,
 });
 
 pool.getConnection((err, conn) => {
