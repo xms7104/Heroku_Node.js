@@ -22,21 +22,11 @@ const productController = {
     
     getAll: async (req, res) => {
         try {
-            const result = await pool.query("select * from product");
-            if (Array.isArray(result) && result.length === 2) {
-                const [rows, fields] = result;
-          
-                res.json({
-                  data: rows, // Convert only the necessary data to JSON
-                });
-              } else {
-                // Handle the case when the result is not in the expected format
-                console.log("Unexpected result format:", result);
-                res.json({
-                  status: "error_getAll",
-                  error: "Unexpected result format",
-                });
-              }
+            const data = await pool.query("select * from product");
+            const extractedData = data.rows; // Assuming 'rows' contains the array of product data
+            res.json({
+              data: extractedData, // Convert only the necessary data to JSON
+            });
         } catch (error) {
             console.log("Error in getAll method:", error); // 输出实际的错误信息
             res.json({
