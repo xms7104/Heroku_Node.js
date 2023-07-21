@@ -21,10 +21,11 @@ pool.getConnection((err, conn) => {
 const productController = {
     getAll: async (req, res) => {
         try {
-            const [rows, fields] = await pool.query("select * from product");
-            res.json({
-                data: rows
-            });
+            const data = await pool.query("select * from product");
+            res.send(data)
+            // res.json({
+            //     data: data
+            // });
         } catch (error) {
             console.log("Error in getAll method:", error);
             res.json({
